@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monkey & Banana Problem — AI Project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400;500&family=Outfit:wght@200;300;400;500;600&display=swap"
+      rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+
+    <nav>
+      <a href="#" class="nav-logo">M&B Problem</a>
+      <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#simulation">Simulate</a></li>
+        <li><a href="#peas">PEAS</a></li>
+        <li><a href="#algorithms">Algorithms</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <span class="nav-badge">AI · Course Project</span>
+    </nav>
+
+    <main>
+      <section class="hero" id="home">
+        <div class="hero-label">Artificial Intelligence — Course
+          Project</div>
+        <h1>The Monkey &amp;<br><em>Banana Problem</em></h1>
+        <p class="hero-sub">A classical planning and state-space search
+          challenge in AI, modelling how an intelligent agent reasons
+          to achieve a goal.</p>
+        <div class="hero-meta">
+          <div class="hero-meta-item">
+            <span class="val">BFS / DFS</span>
+            <span class="key">Search Strategy</span>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-meta-item">
+            <span class="val">4 Actions</span>
+            <span class="key">Operators</span>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-meta-item">
+            <span class="val">Goal-Based</span>
+            <span class="key">Agent Type</span>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-meta-item">
+            <span class="val">Discrete</span>
+            <span class="key">State Space</span>
+          </div>
+        </div>
+        <div class="hero-cta">
+          <a href="#simulation" class="btn-primary">Run Simulation
+            ↓</a>
+          <a href="#problem" class="btn-outline">Explore</a>
+        </div>
+        <div class="scroll-hint">
+          <svg width="16" height="16" viewBox="0 0 16 16"
+            fill="none"><path d="M8 3v10M4 9l4 4 4-4"
+              stroke="currentColor" stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round" /></svg>
+          scroll
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="problem" class="fade-in">
+        <div class="section-header">
+          <span class="section-num">01</span>
+          <h2 class="section-title">Problem <em>Description</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="problem-grid">
+          <div class="problem-card">
+            <div class="corner-accent"></div>
+            <div class="problem-card-icon">🏠</div>
+            <h3>Room Setup</h3>
+            <p>A room containing three key objects: a monkey, a
+              movable box, and a banana suspended from the ceiling
+              — out of the monkey's direct reach unless it climbs
+              on the box.</p>
+          </div>
+          <div class="problem-card">
+            <div class="corner-accent"></div>
+            <div class="problem-card-icon">📍</div>
+            <h3>Initial State</h3>
+            <p>
+              Monkey at position <code>A</code> on the floor.<br>
+              Box at position <code>B</code>, movable.<br>
+              Banana hanging at position <code>C</code> — out of
+              reach.
+            </p>
+          </div>
+          <div class="problem-card wide">
+            <div class="corner-accent"></div>
+            <div class="problem-card-icon">🎯</div>
+            <h3>Objective</h3>
+            <p>Find an optimal sequence of operators —
+              <code>Move</code>, <code>Push</code>,
+              <code>Climb</code>, <code>Grab</code> — that
+              transitions the system from the initial state to the
+              goal state where the monkey is holding the banana.
+              This models how an intelligent agent must reason
+              about multi-step consequences before acting.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="solution" class="fade-in">
+        <div class="section-header">
+          <span class="section-num">02</span>
+          <h2 class="section-title">Operator <em>Sequence</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="steps-container">
+          <div class="step-item">
+            <div class="step-num-big">01</div>
+            <div class="step-content">
+              <span class="step-tag">Action · Move</span>
+              <h3>Walk to the Box</h3>
+              <p>The monkey moves from its initial position
+                <strong>A</strong> toward position
+                <strong>B</strong> where the box is located.
+                This positions the monkey adjacent to the box so
+                it can be manipulated.</p>
+            </div>
+            <span class="step-arrow">→</span>
+          </div>
+          <div class="step-item">
+            <div class="step-num-big">02</div>
+            <div class="step-content">
+              <span class="step-tag">Action · Push</span>
+              <h3>Push Box Under Banana</h3>
+              <p>The monkey pushes the box from position
+                <strong>B</strong> to position
+                <strong>C</strong>, aligning the box directly
+                beneath the suspended banana. The monkey's
+                position updates accordingly.</p>
+            </div>
+            <span class="step-arrow">→</span>
+          </div>
+          <div class="step-item">
+            <div class="step-num-big">03</div>
+            <div class="step-content">
+              <span class="step-tag">Action · Climb</span>
+              <h3>Ascend the Box</h3>
+              <p>The monkey climbs onto the top of the box at
+                position <strong>C</strong>. This increases the
+                monkey's effective reach height, making the
+                banana reachable for the first time.</p>
+            </div>
+            <span class="step-arrow">→</span>
+          </div>
+          <div class="step-item">
+            <div class="step-num-big">04</div>
+            <div class="step-content">
+              <span class="step-tag">Action · Grab · Goal
+                State</span>
+              <h3>Grab the Banana 🍌</h3>
+              <p>The monkey grasps the banana. The goal state is
+                reached: <code>monkey holds banana =
+                  true</code>. The planning problem is solved
+                in the minimum number of steps.</p>
+            </div>
+            <span class="step-arrow">✓</span>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="simulation" class="fade-in">
+        <div class="section-header">
+          <span class="section-num">03</span>
+          <h2 class="section-title">Interactive
+            <em>Simulation</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="sim-wrapper">
+          <div class="sim-header">
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-dot"></div>
+            <div class="sim-title-bar">Interactive Monkey & Banana</div>
+          </div>
+          <canvas id="gameCanvas" width="800" height="600"></canvas>
+
+          <div class="sim-controls-bar">
+            <div class="sim-step-display">
+              <span class="sim-step-label"
+                id="scoreLabel">Bananas: 0/3</span>
+              <span class="sim-step-text">Use <b>Left/Right
+                  Arrows</b> to move, <b>Shift</b> to push the
+                box, and <b>Space</b> to jump!</span>
+            </div>
+            <button class="sim-btn primary" id="startGameBtn">Start
+              Game ▶</button>
+            <button class="sim-btn" id="autoSolveBtn">Auto Solve (BFS)
+              🤖</button>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="peas" class="fade-in">
+        <div class="section-header">
+          <span class="section-num">04</span>
+          <h2 class="section-title">PEAS <em>Framework</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="peas-grid">
+          <div class="peas-card">
+            <div class="peas-card-accent"></div>
+            <div class="peas-letter">P</div>
+            <div class="peas-label">Performance Measure</div>
+            <h3>Success Criteria</h3>
+            <p>The agent is evaluated on whether the banana is
+              obtained, the number of actions taken (minimise
+              steps), and safety — avoiding collisions during
+              movement.</p>
+            <div class="peas-tags">
+              <span class="peas-tag">Banana obtained</span>
+              <span class="peas-tag">Min steps</span>
+              <span class="peas-tag">No collisions</span>
+            </div>
+          </div>
+          <div class="peas-card">
+            <div class="peas-card-accent"></div>
+            <div class="peas-letter">E</div>
+            <div class="peas-label">Environment</div>
+            <h3>Room &amp; Objects</h3>
+            <p>A bounded room containing the three key objects the
+              agent must reason about and interact with to achieve
+              the goal.</p>
+            <div class="peas-tags">
+              <span class="peas-tag">Monkey</span>
+              <span class="peas-tag">Box</span>
+              <span class="peas-tag">Banana</span>
+              <span class="peas-tag">Room</span>
+            </div>
+          </div>
+          <div class="peas-card">
+            <div class="peas-card-accent"></div>
+            <div class="peas-letter">A</div>
+            <div class="peas-label">Actuators</div>
+            <h3>Available Actions</h3>
+            <p>The four operators the agent can apply to transition
+              between states and progress toward the goal
+              state.</p>
+            <div class="peas-tags">
+              <span class="peas-tag">Move(L/R)</span>
+              <span class="peas-tag">Push(box)</span>
+              <span class="peas-tag">Climb(box)</span>
+              <span class="peas-tag">Grasp/Release</span>
+            </div>
+          </div>
+          <div class="peas-card">
+            <div class="peas-card-accent"></div>
+            <div class="peas-letter">S</div>
+            <div class="peas-label">Sensors</div>
+            <h3>Perception</h3>
+            <p>Sensors provide the agent with complete situational
+              awareness at every timestep to support fully
+              observable planning.</p>
+            <div class="peas-tags">
+              <span class="peas-tag">Position sensors</span>
+              <span class="peas-tag">Reachability</span>
+              <span class="peas-tag">Proprioception</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section class="fade-in">
+        <div class="section-header">
+          <span class="section-num">05</span>
+          <h2 class="section-title">Environment
+            <em>Properties</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="odesda-grid">
+          <div class="odesda-card">
+            <span class="odesda-initial">O</span>
+            <h4>Observable</h4>
+            <div class="odesda-value">Fully Observable</div>
+            <p class="odesda-desc">All object positions and states
+              are known to the agent at every step via its
+              sensors.</p>
+          </div>
+          <div class="odesda-card">
+            <span class="odesda-initial">D</span>
+            <h4>Deterministic</h4>
+            <div class="odesda-value">Deterministic</div>
+            <p class="odesda-desc">Each action produces a uniquely
+              determined next state — no randomness in
+              transitions.</p>
+          </div>
+          <div class="odesda-card">
+            <span class="odesda-initial">E</span>
+            <h4>Episodic</h4>
+            <div class="odesda-value">Sequential</div>
+            <p class="odesda-desc">Actions influence future states;
+              the agent must plan across multiple interdependent
+              steps.</p>
+          </div>
+          <div class="odesda-card">
+            <span class="odesda-initial">S</span>
+            <h4>Static</h4>
+            <div class="odesda-value">Static</div>
+            <p class="odesda-desc">The environment doesn't change
+              while the agent deliberates — no external events
+              occur.</p>
+          </div>
+          <div class="odesda-card">
+            <span class="odesda-initial">D</span>
+            <h4>Discrete</h4>
+            <div class="odesda-value">Discrete</div>
+            <p class="odesda-desc">Finite, clearly defined set of
+              states and actions — positions, on/off box,
+              reachability flags.</p>
+          </div>
+          <div class="odesda-card">
+            <span class="odesda-initial">A</span>
+            <h4>Agent</h4>
+            <div class="odesda-value">Single Agent</div>
+            <p class="odesda-desc">Only one monkey acts in the
+              environment — no multi-agent interactions to
+              consider.</p>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section class="fade-in">
+        <div class="section-header">
+          <span class="section-num">06</span>
+          <h2 class="section-title">Agent <em>Architecture</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="agent-panel">
+          <div class="agent-text">
+            <h3>Goal-Based<br><em>Reflex Agent</em></h3>
+            <p>Unlike simple reflex agents that react purely to
+              current percepts, a goal-based agent uses knowledge
+              of the environment and a desired end-state to plan a
+              sequence of actions that achieves the goal.</p>
+            <p>In this problem, the agent evaluates consequences
+              before committing to any action, selecting only
+              those operators that progress it toward the goal
+              state.</p>
+            <ul class="agent-features">
+              <li class="agent-feature"><div
+                  class="agent-feature-dot"></div><span>Holds
+                  an internal model of the environment and
+                  object states</span></li>
+              <li class="agent-feature"><div
+                  class="agent-feature-dot"></div><span>Plans
+                  sequences: Move → Push → Climb →
+                  Grab</span></li>
+              <li class="agent-feature"><div
+                  class="agent-feature-dot"></div><span>More
+                  intelligent than simple reflex — considers
+                  consequences</span></li>
+              <li class="agent-feature"><div
+                  class="agent-feature-dot"></div><span>Operates
+                  in a fully observable, deterministic
+                  environment</span></li>
+            </ul>
+          </div>
+          <div class="agent-diagram">
+            <div class="agent-diagram-title">Agent decision
+              cycle</div>
+            <div class="flow-node">
+              <h5>Percept</h5>
+              <p>Position sensors, reachability sensor</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">
+              <h5>State Update</h5>
+              <p>Update internal world model</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node highlight">
+              <h5>Goal Check</h5>
+              <p>Is banana held? → Stop</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">
+              <h5>Plan &amp; Select Action</h5>
+              <p>BFS / DFS over state space</p>
+            </div>
+            <div class="flow-arrow">↓</div>
+            <div class="flow-node">
+              <h5>Execute Action</h5>
+              <p>Move · Push · Climb · Grab</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <hr class="divider">
+
+      <section id="algorithms" class="fade-in">
+        <div class="section-header">
+          <span class="section-num">07</span>
+          <h2 class="section-title">Search <em>Algorithms</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="algo-grid">
+          <div class="algo-card recommended">
+            <span class="algo-rec-badge">Recommended</span>
+            <div class="algo-abbr">BFS</div>
+            <div class="algo-name">Breadth-First Search</div>
+            <p>Systematically explores states by increasing depth.
+              In a discrete, finite state space, BFS guarantees
+              the shortest action sequence when every action has
+              equal cost.</p>
+            <div class="algo-props">
+              <span class="algo-prop good">Optimal</span>
+              <span class="algo-prop good">Complete</span>
+              <span class="algo-prop warn">Memory: O(b^d)</span>
+            </div>
+          </div>
+          <div class="algo-card">
+            <div class="algo-abbr">DFS</div>
+            <div class="algo-name">Depth-First Search</div>
+            <p>Explores deep paths first. Can find a solution
+              quickly, but may return a non-optimal sequence and
+              can get stuck in long branches without careful cycle
+              detection.</p>
+            <div class="algo-props">
+              <span class="algo-prop warn">Non-optimal</span>
+              <span class="algo-prop good">Low memory</span>
+              <span class="algo-prop warn">Needs cycle
+                check</span>
+            </div>
+          </div>
+          <div class="algo-card">
+            <div class="algo-abbr">UCS</div>
+            <div class="algo-name">Uniform-Cost Search</div>
+            <p>Generalises BFS by expanding the lowest-cost node
+              first. Optimal when actions carry different costs —
+              reduces to BFS when all costs are equal.</p>
+            <div class="algo-props">
+              <span class="algo-prop good">Optimal</span>
+              <span class="algo-prop good">Cost-sensitive</span>
+            </div>
+          </div>
+          <div class="algo-card">
+            <div class="algo-abbr">A*</div>
+            <div class="algo-name">A* Search</div>
+            <p>Uses an admissible heuristic (e.g. Manhattan distance
+              to align box under banana) to guide search. Most
+              efficient when a good heuristic is available.</p>
+            <div class="algo-props">
+              <span class="algo-prop good">Optimal</span>
+              <span class="algo-prop good">Heuristic-guided</span>
+              <span class="algo-prop warn">Heuristic design</span>
+            </div>
+          </div>
+        </div>
+        <p
+          style="font-size:0.82rem;color:var(--text3);line-height:1.8;">
+          <strong
+            style="color:var(--text2);font-weight:400;">Practical
+            note:</strong> Use state hashing to avoid revisiting
+          states and prevent loops. For non-uniform action costs,
+          prefer UCS or A* with an admissible heuristic such as
+          Manhattan distance to align the box beneath the banana.
+        </p>
+      </section>
+
+      <hr class="divider">
+
+      <section id="team" class="fade-in team-section">
+        <div class="section-header" style="justify-content:center">
+          <span class="section-num">08</span>
+          <h2 class="section-title">The <em>Team</em></h2>
+          <div class="section-line"></div>
+        </div>
+        <div class="team-grid">
+          <div class="team-card">
+            <div class="team-avatar">ME</div>
+            <div class="team-name">Mohamed El Nemr</div>
+            <div class="team-role">Student · AI Course</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">MA</div>
+            <div class="team-name">Mohamed Adel</div>
+            <div class="team-role">Student · AI Course</div>
+          </div>
+          <div class="team-card">
+            <div class="team-avatar">MA</div>
+            <div class="team-name">Mohamed Agwa</div>
+            <div class="team-role">Student · AI Course</div>
+          </div>
+        </div>
+        <div class="uni-badge">
+          <span>Mansoura University</span>
+          <span>Faculty of Computers &amp; Information Science</span>
+        </div>
+        <p class="supervision-text">Under the supervision of <strong>Dr.
+            Sara El-Metwally</strong> &amp; <strong>Eng. Mai
+            Mohamed</strong></p>
+      </section>
+    </main>
+
+    <footer>
+      <div class="footer-left">
+        <span class="footer-title">The Monkey &amp; Banana Problem</span>
+        <span class="footer-divider"></span>
+        <span class="footer-copyright">&copy; 2026 Mohamed Elnemr. All rights
+          reserved.</span>
+      </div>
+
+      <div class="footer-right">
+        <span class="footer-uni">Mansoura University · FCIS · AI Course</span>
+
+        <a href="https://www.linkedin.com/in/tiger0x01/" target="_blank"
+          class="footer-social" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor"
+            stroke-width="2" fill="none" stroke-linecap="round"
+            stroke-linejoin="round">
+            <path
+              d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
+            <rect x="2" y="9" width="4" height="12"></rect>
+            <circle cx="4" cy="4" r="2"></circle>
+          </svg>
+        </a>
+      </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
