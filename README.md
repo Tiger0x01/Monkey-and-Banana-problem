@@ -1,7 +1,9 @@
 # 🐒 Monkey and Banana Problem (BFS AI Simulation)
 
+🌐 **Live Demo:** https://Tiger0x01.github.io/Monkey-and-Banana-problem/
+
 <p align="center">
-  <img src="Assets/Welcome .png" width="250" alt="Welcome"/>
+  <img src="Assets/Welcome.png" width="250" alt="Welcome"/>
 </p>
 
 <p align="center">
