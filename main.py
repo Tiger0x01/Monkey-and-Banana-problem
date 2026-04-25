@@ -158,7 +158,7 @@ class MonkeyGame:
     def load_all_assets(self):
 
         self.assets['idle'] = [
-            self.load_img("monkey.png", (80, 80)),
+            self.load_img("monkey1.png", (80, 80)),
             self.load_img("monkey_b1.png", (80, 80)),
             self.load_img("monkey_b2.png", (80, 80)),
             self.load_img("monkey_b3.png", (80, 80))

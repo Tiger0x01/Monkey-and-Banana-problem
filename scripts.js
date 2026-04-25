@@ -56,7 +56,7 @@ function loadImage(src) {
 
 // ── INIT ASSETS ──
 async function loadAllAssets() {
-    assets.idle[0] = await loadImage("Assets/monkey.png");
+    assets.idle[0] = await loadImage("Assets/monkey1.png");
     assets.idle[1] = await loadImage("Assets/monkey_b1.png");
     assets.idle[2] = await loadImage("Assets/monkey_b2.png");
     assets.idle[3] = await loadImage("Assets/monkey_b3.png");
